@@ -8,11 +8,10 @@ const FF2 = preload("res://Recursos/forceField_002.ogg")
 const FF3 = preload("res://Recursos/forceField_003.ogg")
 @onready var sonidos: Array = [FF0,FF1,FF2,FF3]
 @onready var nota: AudioStreamPlayer = $Nota
+@onready var orbes_mundo
 
 func _ready() -> void:
 	inicializar_emisores()
-
-
 
 func inicializar_emisores() -> void:
 	var cuadrante : int = 0

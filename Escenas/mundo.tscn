@@ -1,21 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmj4o4y48hx6t"]
+[gd_scene load_steps=10 format=3 uid="uid://dmj4o4y48hx6t"]
 
 [ext_resource type="Script" uid="uid://d4a7ypsuk17oa" path="res://mundo.gd" id="1_gv8d2"]
-[ext_resource type="PackedScene" uid="uid://77pwot11yr42" path="res://Escenas/character_body_2d.tscn" id="2_5sfon"]
+[ext_resource type="PackedScene" uid="uid://77pwot11yr42" path="res://Escenas/personaje.tscn" id="2_5sfon"]
 [ext_resource type="Texture2D" uid="uid://bau00pnx2n2im" path="res://icon.svg" id="2_f4s1m"]
 [ext_resource type="AudioStream" uid="uid://dus3trxnxastp" path="res://Recursos/Notas/nota_1.ogg" id="4_ly0wt"]
+[ext_resource type="PackedScene" uid="uid://dtxjwx0dsgub3" path="res://Escenas/director.tscn" id="5_rxj15"]
+[ext_resource type="Script" uid="uid://d2q171oyqta75" path="res://director.gd" id="6_f4s1m"]
+
+[sub_resource type="Animation" id="Animation_rxj15"]
+resource_name = "cambio_mundo_real"
+
+[sub_resource type="Animation" id="Animation_f4s1m"]
+resource_name = "cambio_mundo_neutro"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gv8d2"]
+_data = {
+&"cambio_mundo_neutro": SubResource("Animation_f4s1m"),
+&"cambio_mundo_real": SubResource("Animation_rxj15")
+}
 
 [node name="Mundo" type="Node2D"]
 script = ExtResource("1_gv8d2")
 
 [node name="Fondo" type="Sprite2D" parent="."]
-modulate = Color(0.0728426, 0.0728426, 0.0728426, 1)
+modulate = Color(0.20871, 0.20871, 0.20871, 1)
 position = Vector2(-229.5, -691)
 scale = Vector2(80.1484, 30.6094)
 texture = ExtResource("2_f4s1m")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_5sfon")]
+[node name="Personaje" parent="." instance=ExtResource("2_5sfon")]
 position = Vector2(-465, -24)
 
 [node name="Nota" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ly0wt")
+
+[node name="Director" parent="." instance=ExtResource("5_rxj15")]
+libraries = {
+&"": SubResource("AnimationLibrary_gv8d2")
+}
+script = ExtResource("6_f4s1m")
+
+[connection signal="timeout" from="Personaje/TimerQuieto" to="Director" method="cambio_mundo_neutro"]
+
+[editable path="Personaje"]

@@ -5,7 +5,7 @@ extends Area2D
 @onready var area_agarrable: Area2D = $AreaAgarrable
 
 
-
+@export var id: int 
 var player_ref: Node2D 
 var player_cerca: bool = false
 
