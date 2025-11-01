@@ -12,12 +12,21 @@ var player_cerca: bool = false
 func _ready() -> void:
 	connect("body_entered", emitir_sonido_cercano)
 	connect("body_exited", apagar_sonido_cercano.unbind(1))
-	area_agarrable.connect("body_entered", queue_free.unbind(1))
+	area_agarrable.connect("body_entered",agarrar)
 	sonido_cerca.volume_db = -100.0
 
 func _process(delta: float) -> void:
 	if player_cerca:
 		sonido_cerca.pitch_scale = distancia_en_area(position, radio_colision, player_ref.position ) + 1 # el uno es para que la frecuencia sea un poco mas rápida
+
+func agarrar(body:Node2D) -> void:
+	if body is jugador:
+		if body.cant_orbes == id:
+			body.sumarOrbe()
+		else: 
+			#reposicionar orbe 
+			pass
+
 
 func emitir_sonido_cercano(body:Node2D) -> void:
 	player_ref = body

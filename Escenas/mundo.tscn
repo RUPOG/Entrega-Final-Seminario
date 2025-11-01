@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmj4o4y48hx6t"]
+[gd_scene load_steps=11 format=3 uid="uid://dmj4o4y48hx6t"]
 
 [ext_resource type="Script" uid="uid://d4a7ypsuk17oa" path="res://mundo.gd" id="1_gv8d2"]
 [ext_resource type="PackedScene" uid="uid://77pwot11yr42" path="res://Escenas/personaje.tscn" id="2_5sfon"]
 [ext_resource type="Texture2D" uid="uid://bau00pnx2n2im" path="res://icon.svg" id="2_f4s1m"]
+[ext_resource type="PackedScene" uid="uid://2ed8cwy31lfd" path="res://Escenas/orbe_emisor.tscn" id="2_gv8d2"]
 [ext_resource type="AudioStream" uid="uid://dus3trxnxastp" path="res://Recursos/Notas/nota_1.ogg" id="4_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://dtxjwx0dsgub3" path="res://Escenas/director.tscn" id="5_rxj15"]
 [ext_resource type="Script" uid="uid://d2q171oyqta75" path="res://director.gd" id="6_f4s1m"]
@@ -28,6 +29,11 @@ position = Vector2(-229.5, -691)
 scale = Vector2(80.1484, 30.6094)
 texture = ExtResource("2_f4s1m")
 
+[node name="Orbes" type="Node2D" parent="."]
+
+[node name="OrbeEmisor" parent="Orbes" instance=ExtResource("2_gv8d2")]
+position = Vector2(229, -16)
+
 [node name="Personaje" parent="." instance=ExtResource("2_5sfon")]
 position = Vector2(-465, -24)
 
@@ -40,6 +46,8 @@ libraries = {
 }
 script = ExtResource("6_f4s1m")
 
+[connection signal="agarre_orbe" from="Personaje" to="." method="chequear_orbes"]
 [connection signal="timeout" from="Personaje/TimerQuieto" to="Director" method="cambio_mundo_neutro"]
 
+[editable path="Orbes/OrbeEmisor"]
 [editable path="Personaje"]

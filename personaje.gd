@@ -1,15 +1,13 @@
 extends CharacterBody2D
 class_name jugador
 
-signal tiempo
-
-
+signal agarre_orbe(num:int)
 @export var VELOCIDAD: float = 100
 @onready var timer_quieto: Timer = $TimerQuieto
 @onready var pasos: AudioStreamPlayer = $Pasos
+@onready var cant_orbes: int = 0
 
 const FRENADO: float = 600
-var orbes_player:Array[int] = []
 var moviendose: bool = false
 
 
@@ -36,10 +34,6 @@ func movimiento(delta):
 	move_and_slide()
 
 
-
-func sumarOrbe(id_orbe):
-	orbes_player.append(id_orbe)
-	print(orbes_player)
-
-func numero_de_orbes()->int:
-	return orbes_player.size()  
+func sumarOrbe():
+	cant_orbes += 1
+	agarre_orbe.emit(cant_orbes)

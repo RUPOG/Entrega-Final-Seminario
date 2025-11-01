@@ -8,27 +8,34 @@ const FF2 = preload("res://Recursos/forceField_002.ogg")
 const FF3 = preload("res://Recursos/forceField_003.ogg")
 @onready var sonidos: Array = [FF0,FF1,FF2,FF3]
 @onready var nota: AudioStreamPlayer = $Nota
-@onready var orbes_mundo
+@onready var cant_orbes_max: int = 4
+
+
+func chequear_orbes(num : int) -> void:
+	if num == cant_orbes_max:
+		#acá se termina el juego
+		pass
 
 func _ready() -> void:
-	inicializar_emisores()
+	pass
+	#inicializar_emisores()
 
-func inicializar_emisores() -> void:
-	var cuadrante : int = 0
-	for s in sonidos:
-		var instancia_orbe = ORBE_EMISOR.instantiate()
-		add_child(instancia_orbe)
-		match  cuadrante:
-			0:
-				instancia_orbe.position = Vector2(-2000,-2000)
-			1:
-				instancia_orbe.position = Vector2(2000,-2000)
-			2:
-				instancia_orbe.position = Vector2(-2000,2000)
-			3:
-				instancia_orbe.position = Vector2(2000,2000)
-		instancia_orbe.area_agarrable.connect("body_entered",nota.play.unbind(1))
-		instancia_orbe.sonido_cerca.volume_db = -30.0
-		instancia_orbe.sonido_lejos.stream = s
-		instancia_orbe.sonido_lejos.play()
-		cuadrante += 1
+#func inicializar_emisores() -> void:
+	#var cuadrante : int = 0
+	#for s in sonidos:
+		#var instancia_orbe = ORBE_EMISOR.instantiate()
+		#add_child(instancia_orbe)
+		#match  cuadrante:
+			#0:
+				#instancia_orbe.position = Vector2(-2000,-2000)
+			#1:
+				#instancia_orbe.position = Vector2(2000,-2000)
+			#2:
+				#instancia_orbe.position = Vector2(-2000,2000)
+			#3:
+				#instancia_orbe.position = Vector2(2000,2000)
+		#instancia_orbe.area_agarrable.connect("body_entered",nota.play.unbind(1))
+		#instancia_orbe.sonido_cerca.volume_db = -30.0
+		#instancia_orbe.sonido_lejos.stream = s
+		#instancia_orbe.sonido_lejos.play()
+		#cuadrante += 1
