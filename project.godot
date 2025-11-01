@@ -17,11 +17,16 @@ config/icon="res://icon.svg"
 
 [audio]
 
-buses/default_bus_layout=""
+buses/default_bus_layout="uid://ccid3qq6letha"
 
 [display]
 
 window/size/always_on_top=true
+
+[layer_names]
+
+2d_physics/layer_1="Personaje"
+2d_physics/layer_2="Paredes"
 
 [rendering]
 

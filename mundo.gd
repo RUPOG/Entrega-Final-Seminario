@@ -9,10 +9,8 @@ const FF3 = preload("res://Recursos/forceField_003.ogg")
 @onready var sonidos: Array = [FF0,FF1,FF2,FF3]
 @onready var nota: AudioStreamPlayer = $Nota
 
-func _ready() -> void:
-	inicializar_emisores()
-
-
+#func _ready() -> void:
+	#inicializar_emisores()
 
 func inicializar_emisores() -> void:
 	var cuadrante : int = 0
@@ -33,3 +31,6 @@ func inicializar_emisores() -> void:
 		instancia_orbe.sonido_lejos.stream = s
 		instancia_orbe.sonido_lejos.play()
 		cuadrante += 1
+
+
+ 

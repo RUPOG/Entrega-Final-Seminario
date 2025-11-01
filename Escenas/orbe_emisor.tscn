@@ -11,6 +11,7 @@ radius = 977.878
 radius = 50.0
 
 [node name="OrbeEmisor" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_y1koe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -31,6 +32,7 @@ panning_strength = 20.0
 parameters/looping = true
 
 [node name="AreaAgarrable" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAgarrable"]
 shape = SubResource("CircleShape2D_yqlsx")
