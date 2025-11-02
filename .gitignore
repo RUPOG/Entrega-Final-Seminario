@@ -14,3 +14,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Ignore all scene and resource files
+*.tscn
+*.tres
+**/*.tscn
+**/*.tres
