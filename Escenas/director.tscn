@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dtxjwx0dsgub3"]
+
+[node name="Director" type="AnimationPlayer"]
