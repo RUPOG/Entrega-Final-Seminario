@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmj4o4y48hx6t"]
+
+[ext_resource type="Script" uid="uid://d4a7ypsuk17oa" path="res://codigo/mundo.gd" id="1_gv8d2"]
+[ext_resource type="PackedScene" uid="uid://77pwot11yr42" path="res://Escenas/personaje.tscn" id="2_5sfon"]
+[ext_resource type="PackedScene" uid="uid://2ed8cwy31lfd" path="res://Escenas/orbe_emisor.tscn" id="2_gv8d2"]
+[ext_resource type="PackedScene" uid="uid://kfgxo8f7sp6g" path="res://Escenas/Mapa1.tscn" id="2_tokhs"]
+[ext_resource type="AudioStream" uid="uid://dus3trxnxastp" path="res://Recursos/Notas/nota_1.ogg" id="4_ly0wt"]
+[ext_resource type="PackedScene" uid="uid://dtxjwx0dsgub3" path="res://Escenas/director.tscn" id="5_rxj15"]
+[ext_resource type="Script" uid="uid://d2q171oyqta75" path="res://codigo/director.gd" id="6_f4s1m"]
+[ext_resource type="PackedScene" uid="uid://c8obeteyxianv" path="res://Escenas/menu_de_pause.tscn" id="9_0dyk3"]
+
+[sub_resource type="Animation" id="Animation_f4s1m"]
+resource_name = "cambio_mundo_neutro"
+
+[sub_resource type="Animation" id="Animation_rxj15"]
+resource_name = "cambio_mundo_real"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gv8d2"]
+_data = {
+&"cambio_mundo_neutro": SubResource("Animation_f4s1m"),
+&"cambio_mundo_real": SubResource("Animation_rxj15")
+}
+
+[node name="Mundo" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_gv8d2")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("2_tokhs")]
+
+[node name="Personaje" parent="." instance=ExtResource("2_5sfon")]
+process_mode = 1
+position = Vector2(-194, 1157)
+collision_mask = 2
+
+[node name="Orbes" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="OrbeEmisor" parent="Orbes" instance=ExtResource("2_gv8d2")]
+position = Vector2(229, -16)
+
+[node name="Nota" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ly0wt")
+
+[node name="Director" parent="." instance=ExtResource("5_rxj15")]
+libraries = {
+&"": SubResource("AnimationLibrary_gv8d2")
+}
+script = ExtResource("6_f4s1m")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("9_0dyk3")]
+
+[connection signal="agarre_orbe" from="Personaje" to="." method="chequear_orbes"]
+
+[editable path="Personaje"]
+[editable path="Orbes/OrbeEmisor"]
+[editable path="Director"]

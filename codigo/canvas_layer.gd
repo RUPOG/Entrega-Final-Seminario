@@ -1,0 +1,7 @@
+extends CanvasLayer
+@onready var color_rect: ColorRect = $ColorRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _process(delta: float) -> void:
+	color_rect.hide()
