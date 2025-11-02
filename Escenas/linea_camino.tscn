@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwlg5ya621utf"]
-
-[ext_resource type="Script" uid="uid://das2qa4efs4y1" path="res://linea.gd" id="1_b40xk"]
-
-[node name="LineaCamino" type="Line2D"]
-script = ExtResource("1_b40xk")
